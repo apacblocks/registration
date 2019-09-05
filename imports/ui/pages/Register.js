@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -24,8 +24,47 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function Login(props) {
+export default function Reg(props) {
     const classes = useStyles();
+    const [userName, setUserName] = useState();
+    const [telName, setTelName] = useState();
+    const [email, setEmail] = useState();
+    const [btc, setBtc] = useState();
+    const [password, setPassword] = useState();
+    const [cPassword, setCPassword] = useState();
+    const code = props.location.state.code;
+
+    function register() {
+        if (userName == undefined || telName == undefined || email == undefined || password == undefined || btc == undefined || code == undefined) {
+            alert("Fields cant be empty")
+            return
+        }
+        if (password.length <= 6) {
+            alert("password needs to have at least 6 characters!");
+            return
+        }
+        if (password != cPassword) {
+            alert("password not match!");
+            return
+        }
+        Accounts.createUser({
+            username: userName,
+            email: email,
+            password: password,
+            profile: {
+                btcAddress: btc,
+                telegram: telName,
+                code: code
+            }
+        }, (err) => {
+            if (!err) {
+                console.log('success');
+                props.history.push('/')
+            } else {
+                console.log(err.reason);
+            }
+        })
+    }
 
     return (
         <React.Fragment>
@@ -48,8 +87,8 @@ export default function Login(props) {
             <Container style={{ minHeight: '100vh' }}>
                 <Box my={2}>
                     <TextField
-                        id="standard-full-width"
-                        label="Name"
+                        id="standard-full-width-user"
+                        label="Username"
                         style={{ margin: 8 }}
                         placeholder=""
                         fullWidth
@@ -57,9 +96,10 @@ export default function Login(props) {
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        onChange={() => { setUserName(event.target.value) }}
                     />
                     <TextField
-                        id="standard-full-width"
+                        id="standard-full-width-tel"
                         label="Telegram Username"
                         style={{ margin: 8 }}
                         placeholder=""
@@ -68,9 +108,11 @@ export default function Login(props) {
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        onChange={() => { setTelName(event.target.value) }}
                     />
                     <TextField
-                        id="standard-full-width"
+                        id="standard-full-width-email"
+                        type="email"
                         label="Email"
                         style={{ margin: 8 }}
                         placeholder=""
@@ -79,9 +121,23 @@ export default function Login(props) {
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        onChange={() => { setEmail(event.target.value) }}
                     />
                     <TextField
-                        id="standard-full-width"
+                        id="standard-full-width-btc"
+                        label="BTC address"
+                        style={{ margin: 8 }}
+                        placeholder=""
+                        fullWidth
+                        margin="normal"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        onChange={() => { setBtc(event.target.value) }}
+                    />
+                    <TextField
+                        id="standard-full-width-pw"
+                        type="password"
                         label="Password"
                         style={{ margin: 8 }}
                         placeholder=""
@@ -91,9 +147,11 @@ export default function Login(props) {
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        onChange={() => { setPassword(event.target.value) }}
                     />
                     <TextField
-                        id="standard-full-width"
+                        id="standard-full-width-cpw"
+                        type="password"
                         label="Confirm Password"
                         style={{ margin: 8 }}
                         placeholder=""
@@ -103,8 +161,9 @@ export default function Login(props) {
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        onChange={() => { setCPassword(event.target.value) }}
                     />
-                    <Button style={{ marginTop: 10 }} variant="contained" color="primary" onClick={() => { window.history.back() }}>Submit</Button>
+                    <Button style={{ marginTop: 10 }} variant="contained" color="primary" onClick={() => { register() }}>Submit</Button>
                 </Box>
             </Container>
         </React.Fragment>

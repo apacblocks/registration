@@ -30,7 +30,7 @@ export default function Join(props) {
   handleScan = data => {
     if (data) {
         console.log(data)
-        props.history.push('/register')
+        props.history.push('/register', {code: data})
     }
   }
   handleError = err => {

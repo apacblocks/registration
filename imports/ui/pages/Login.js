@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -11,6 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import IconButton from '@material-ui/core/IconButton'
+import { Meteor } from 'meteor/meteor'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -25,7 +25,27 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Login(props) {
+    if(Meteor.user()){
+        props.history.push('/profile');
+    }
     const classes = useStyles();
+    const [userName, setUserName] = useState();
+    const [password, setPassword] = useState();
+
+    function login() {
+        if(userName==undefined|| password == undefined){
+            alert('fields cant be empty')
+            return
+        }
+        Meteor.loginWithPassword(userName, password, (err) => {
+            if(!err){
+                props.history.push('/profile');
+            }
+            else{
+                alert(err)
+            }
+        })
+    }
 
     return (
         <React.Fragment>
@@ -48,8 +68,8 @@ export default function Login(props) {
             <Container style={{ minHeight: '100vh' }}>
                 <Box my={2}>
                     <TextField
-                        id="standard-full-width"
-                        label="Name"
+                        id="standard-full-width-uname"
+                        label="Username/Email"
                         style={{ margin: 8 }}
                         placeholder=""
                         fullWidth
@@ -57,9 +77,11 @@ export default function Login(props) {
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        onChange={() => { setUserName(event.target.value) }}
                     />
                     <TextField
-                        id="standard-full-width"
+                        id="standard-full-width-pw"
+                        type="password"
                         label="Password"
                         style={{ margin: 8 }}
                         placeholder=""
@@ -68,8 +90,9 @@ export default function Login(props) {
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        onChange={() => { setPassword(event.target.value) }}
                     />
-                    <Button style={{ marginTop: 10 }} variant="contained" color="primary" >Login</Button>
+                    <Button style={{ marginTop: 10 }} variant="contained" color="primary" onClick={()=>{login()}}>Login</Button>
                 </Box>
             </Container>
         </React.Fragment>
