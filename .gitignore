@@ -1,0 +1,8 @@
+node_modules/
+.build*
+.npm
+browser-bundle.js
+npm-debug.log
+.meteor/local
+lib/
+.DS_Store
