@@ -8,6 +8,8 @@ import NotFoundPage from '../../ui/pages/Notfound'
 import Join from '../../ui/pages/Join'
 import Login from '../../ui/pages/Login'
 import Register from '../../ui/pages/Register'
+import Profile from '../../ui/pages/Profile'
+
 const browserHistory = history.createBrowserHistory();
 
 export const renderRoutes = () => (
@@ -17,6 +19,7 @@ export const renderRoutes = () => (
       <Route exact path="/join" component={Join}/>
       <Route exact path="/login" component={Login}/>
       <Route exact path="/register" component={Register}/>
+      <Route exact path="/profile" component={Profile}/>
       <Route component={NotFoundPage}/>
     </Switch>
   </Router>
