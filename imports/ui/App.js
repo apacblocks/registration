@@ -78,7 +78,7 @@ export default function Main(props) {
       <Container style={{ minHeight: '100vh' }}>
         <Box my={2}>
         <h2>Membership Protocol</h2>
-        <p>New members can only join the organisation while in physical attendance at an APAC Blocks event.</p>
+        <p>New members can only join the organisation while in <b>physical attendance at an APAC Blocks event</b>.</p>
         <p>Any member can invite a maximum of two new members - membership is by invitation <b>only</b>.</p>
         <p>When the 88th person has joined as a member, an on-chain state change will be triggered giving all members the ability the vote on what (if any) membership fee should be charged.</p>
         <h3>How to become a member</h3>
