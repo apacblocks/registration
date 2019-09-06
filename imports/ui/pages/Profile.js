@@ -130,7 +130,7 @@ export default function Profile(props) {
                 subheader={<ListSubheader>Balance</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
-                            <ListItemText id="switch-list-label-darkMode" primary={Meteor.user().profile.balance} />
+                            <ListItemText id="switch-list-label-darkMode" primary={Meteor.user().profile.balance+ " APX"} />
                         </ListItem>
                     </Grid>
                 </List>
