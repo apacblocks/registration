@@ -69,7 +69,7 @@ export default function Login(props) {
                 <Box my={2}>
                     <TextField
                         id="standard-full-width-uname"
-                        label="Username/Email"
+                        label="BTC address/Email"
                         style={{ margin: 8 }}
                         placeholder=""
                         fullWidth
