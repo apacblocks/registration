@@ -32,7 +32,7 @@ export default function Join(props) {
       if (data.startsWith("APAC")) {
         props.history.push('/register', { code: data.slice(4) })
       }
-      else{
+      else {
         console.log("the scanned QR code is not an APAC invitation code.")
       }
     }
@@ -58,12 +58,15 @@ export default function Join(props) {
           >
             <ArrowBack />
           </IconButton>
-          <Typography variant="h6">APAC Block</Typography>
+          <Typography variant="h6">APAC Blocks</Typography>
         </Toolbar>
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
       <Container style={{ minHeight: '100vh' }}>
         <Box my={2}>
+          <h2>Please scan your sponsor's QR code</h2>
+          <p>You must be physically in attendance at an APAC Blocks event to become a member and you must be sponsored by an existing member.</p>
+          <p>You will be asked to allow this site to access your camera. If you are having problems, please try another browser.</p>
           <QrReader
             delay={300}
             onError={this.handleError}

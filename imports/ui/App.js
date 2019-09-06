@@ -71,31 +71,21 @@ export default function Main(props) {
       <CssBaseline />
       <AppBar position="fixed">
         <Toolbar>
-          <Typography variant="h6">APAC Block</Typography>
+          <Typography variant="h6">APAC Blocks</Typography>
         </Toolbar>
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
       <Container style={{ minHeight: '100vh' }}>
         <Box my={2}>
-          {[...new Array(12)]
-            .map(
-              () => `Welcome to APAC Blocks
-              The APAC region is home to many interesting people and projects in the blockchain field, but is often overlooked on the international stage.
-              
-              The idea behind APAC Blocks is to:
-              
-              Highlight competent people and projects solving real problems,
-              Raise the general standards of blockchain-literacy,
-              Enable peer-discovery of high signal to noise ratio people.
-              Membership Protocol and Fees
-              New members can only join the organisation while in physical attendance at an APAC Blocks event.
-              
-              The first 88 memberships are free. Any member can invite a maximum of two new members - membership is by invitation only. When the 88th person has joined as a member, an on-chain state change will be triggered giving all members the ability the vote on what (if any) membership fee should be charged.
-              
-              Token
-              The organisation shall have an associated shitcoin which will be initially distributed at the Genesis event (Launch Party). The protocol rules for this token (such as inflation rate etc) are decided programmatically by on-chain voting.`,
-            )
-            .join('\n')}
+        <h2>Membership Protocol</h2>
+        <p>New members can only join the organisation while in physical attendance at an APAC Blocks event.</p>
+        <p>Any member can invite a maximum of two new members - membership is by invitation <b>only</b>.</p>
+        <p>When the 88th person has joined as a member, an on-chain state change will be triggered giving all members the ability the vote on what (if any) membership fee should be charged.</p>
+        <h3>How to become a member</h3>
+        <p>Click join below, you will be asked to scan the QR code of an existing member.</p>
+        <p>You will then be asked for a Bitcoin address, it is critical that you do not lose the private key for this address as this will be required for voting and recieving associated tokens.</p>
+        <h3>How to invite a member</h3>
+        <p>Simply login with your existing credentials, a QR code to invite new members will automatically be displayed.</p>
         </Box>
       </Container>
       <ScrollTop {...props}>
