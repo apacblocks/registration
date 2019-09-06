@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme => ({
 export default function Reg(props) {
     const classes = useStyles();
     const [userName, setUserName] = useState();
+    const [realName, setRealName] = useState();
     const [telName, setTelName] = useState();
     const [email, setEmail] = useState();
     const [btc, setBtc] = useState();
@@ -35,7 +36,7 @@ export default function Reg(props) {
     const code = props.location.state.code;
 
     function register() {
-        if (userName == undefined || telName == undefined || email == undefined || password == undefined || btc == undefined || code == undefined) {
+        if (userName == undefined || telName == undefined || email == undefined || password == undefined || btc == undefined || code == undefined || realName == undefined) {
             alert("Fields cant be empty")
             return
         }
@@ -55,7 +56,8 @@ export default function Reg(props) {
                 btcAddress: btc,
                 telegram: telName,
                 balance: 1000,
-                invitedBy: code
+                invitedBy: code,
+                realName: realName
             }
         }, (err) => {
             if (!err) {
@@ -100,6 +102,18 @@ export default function Reg(props) {
                             shrink: true,
                         }}
                         onChange={() => { setUserName(event.target.value) }}
+                    />
+                    <TextField
+                        id="standard-full-width-user"
+                        label="Real Name"
+                        style={{ margin: 8 }}
+                        placeholder=""
+                        fullWidth
+                        margin="normal"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        onChange={() => { setRealName(event.target.value) }}
                     />
                     <TextField
                         id="standard-full-width-tel"

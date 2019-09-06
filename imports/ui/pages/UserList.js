@@ -64,16 +64,18 @@ function Login(props) {
                 <Table className={classes.table}>
                     <TableHead>
                         <TableRow>
+                            <TableCell>membership number</TableCell>
                             <TableCell>Username</TableCell>
                             <TableCell align="right">Join Time</TableCell>
                             <TableCell align="right">invitedBy</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {props.users.map(user => (
+                        {props.users.map((user, index) => (
                             <TableRow key={user.username}>
+                                <TableCell>{index}</TableCell>
                                 <TableCell component="th" scope="row">
-                                    {user.username}
+                                    {user.profile.realName}
                                 </TableCell>
                                 <TableCell align="right">{userJoinTime(user)}</TableCell>
                                 <TableCell align="right">{user.profile.invitedBy}</TableCell>
@@ -89,6 +91,6 @@ function Login(props) {
 export default withTracker(() => {
     Meteor.subscribe('userlist');
     return {
-        users: Meteor.users.find({}).fetch(),
+        users: Meteor.users.find({},{sort: {createdAt: 1}}).fetch(),
     };
 })(Login);
