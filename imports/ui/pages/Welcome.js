@@ -68,6 +68,7 @@ ScrollTop.propTypes = {
 
 export default function Main(props) {
   const classes = useStyles();
+  window.scrollTo(0, 0);
   return (
     <React.Fragment>
       <CssBaseline />

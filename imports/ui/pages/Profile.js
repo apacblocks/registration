@@ -28,8 +28,8 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function Login(props) {
-
+export default function Profile(props) {
+    window.scrollTo(0, 0);
     const classes = useStyles();
     const [sponsorName, setSponsorName] = useState("Loading");
     function logout() {
