@@ -13,6 +13,8 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
 import Button from '@material-ui/core/Button'
 import { Route } from 'react-router'
+import UserList from '@material-ui/icons/SupervisedUserCircle'
+import IconButton from '@material-ui/core/IconButton'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -71,6 +73,15 @@ export default function Main(props) {
       <CssBaseline />
       <AppBar position="fixed">
         <Toolbar>
+        <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="go back"
+            onClick={() => props.history.push('/userlist')}
+          >
+            <UserList/>
+          </IconButton>
           <Typography variant="h6">APAC Blocks</Typography>
         </Toolbar>
       </AppBar>
