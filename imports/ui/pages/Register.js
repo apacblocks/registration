@@ -54,6 +54,7 @@ export default function Reg(props) {
             profile: {
                 btcAddress: btc,
                 telegram: telName,
+                balance: 1000,
                 invitedBy: code
             }
         }, (err) => {
@@ -82,7 +83,7 @@ export default function Reg(props) {
                     >
                         <ArrowBack />
                     </IconButton>
-                    <Typography variant="h6">APAC Block</Typography>
+                    <Typography variant="h6">APAC Blocks</Typography>
                 </Toolbar>
             </AppBar>
             <Toolbar id="back-to-top-anchor" />
@@ -130,6 +131,7 @@ export default function Reg(props) {
                         label="BTC address"
                         style={{ margin: 8 }}
                         placeholder=""
+                        helperText="DO NOT lose your private key for this address :)"
                         fullWidth
                         margin="normal"
                         InputLabelProps={{
