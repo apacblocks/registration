@@ -77,7 +77,7 @@ function Login(props) {
                                 <TableCell>membership number</TableCell>
                                 <TableCell>Name</TableCell>
                                 <TableCell align="right">InvitedBy</TableCell>
-                                <TableCell align="right">Joined Time</TableCell>
+                                {/* <TableCell align="right">Joined Time</TableCell> */}
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -88,7 +88,7 @@ function Login(props) {
                                         {user.profile.realName}
                                     </TableCell>
                                     <TableCell align="right">{user.profile.sponsorName}</TableCell>
-                                    <TableCell align="right">{userJoinTime(user)}</TableCell>
+                                    {/* <TableCell align="right">{userJoinTime(user)}</TableCell> */}
                                 </TableRow>
                             ))}
                         </TableBody>

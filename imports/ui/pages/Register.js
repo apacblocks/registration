@@ -33,10 +33,10 @@ export default function Reg(props) {
     const [password, setPassword] = useState();
     const [cPassword, setCPassword] = useState();
     const code = props.location.state.code;
-    const [sponsorName, setSponsorName] = useState();
+    const [bio, setBio] = useState();
 
     function register() {
-        if (telName == undefined || email == undefined || password == undefined || btc == undefined || code == undefined || realName == undefined) {
+        if (bio == undefined || telName == undefined || email == undefined || password == undefined || btc == undefined || code == undefined || realName == undefined) {
             alert("Fields cant be empty")
             return
         }
@@ -48,7 +48,6 @@ export default function Reg(props) {
             alert("password not match!");
             return
         }
-
         Meteor.call('getUsername', code, (err, data) => {
             if (!err) {
                 Accounts.createUser({
@@ -61,7 +60,8 @@ export default function Reg(props) {
                         balance: 1000,
                         invitedBy: code,
                         sponsorName: data,
-                        realName: realName
+                        realName: realName,
+                        bio: bio,
                     }
                 }, (err) => {
                     if (!err) {
@@ -150,6 +150,19 @@ export default function Reg(props) {
                             shrink: true,
                         }}
                         onChange={() => { setBtc(event.target.value) }}
+                    />
+                    <TextField
+                        id="standard-full-width-cpw"
+                        label="Personal Bio"
+                        style={{ margin: 8 }}
+                        placeholder=""
+                        helperText="few sentences or contacts about yourself"
+                        fullWidth
+                        margin="normal"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        onChange={() => { setBio(event.target.value) }}
                     />
                     <TextField
                         id="standard-full-width-pw"
