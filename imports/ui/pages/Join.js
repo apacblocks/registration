@@ -29,10 +29,15 @@ export default function Join(props) {
 
   handleScan = data => {
     if (data) {
-        console.log(data)
-        props.history.push('/register', {code: data})
+      if (data.startsWith("APAC")) {
+        props.history.push('/register', { code: data.slice(4) })
+      }
+      else{
+        console.log("the scanned QR code is not an APAC invitation code.")
+      }
     }
   }
+
   handleError = err => {
     console.error(err)
   }
@@ -44,27 +49,27 @@ export default function Join(props) {
       <CssBaseline />
       <AppBar>
         <Toolbar>
-        <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="go back"
-                        onClick={() => window.history.back()}
-                    >
-                        <ArrowBack />
-                    </IconButton>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="go back"
+            onClick={() => window.history.back()}
+          >
+            <ArrowBack />
+          </IconButton>
           <Typography variant="h6">APAC Block</Typography>
         </Toolbar>
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
       <Container style={{ minHeight: '100vh' }}>
         <Box my={2}>
-        <QrReader
-          delay={300}
-          onError={this.handleError}
-          onScan={this.handleScan}
-          style={{ maxWidth: 500 , margin: '0 auto'}}
-        />
+          <QrReader
+            delay={300}
+            onError={this.handleError}
+            onScan={this.handleScan}
+            style={{ maxWidth: 500, margin: '0 auto' }}
+          />
         </Box>
       </Container>
     </React.Fragment>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 export default function Login(props) {
 
     const classes = useStyles();
-
+    const [sponsorName, setSponsorName] = useState("Loading");
     function logout() {
         Meteor.logout((err) => {
             if (!err) {
@@ -48,6 +48,16 @@ export default function Login(props) {
         props.history.push('/')
         return <></>
     }
+    
+    Meteor.call('getUsername',Meteor.user().profile.invitedBy,(err,data)=>{
+        if(!err){
+            setSponsorName(data)
+        }
+        else
+        {
+            setSponsorName('Not Found')
+        }
+    })
 
     return (
         <React.Fragment>
@@ -92,7 +102,7 @@ export default function Login(props) {
                     subheader={<ListSubheader>Invitation QR code</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
-                            <QRCode value={Meteor.userId()} size="100%" renderAs='svg'/>
+                            <QRCode value={'APAC'+Meteor.userId()} size="100%" renderAs='svg'/>
                         </ListItem>
                     </Grid>
                 </List>
@@ -102,6 +112,24 @@ export default function Login(props) {
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
                             <ListItemText id="switch-list-label-darkMode" primary={Meteor.user().profile.telegram} />
+                        </ListItem>
+                    </Grid>
+                </List>
+                <Divider />
+                <List className={classes.root}
+                subheader={<ListSubheader>BTC address</ListSubheader>}>
+                    <Grid container justify="center" alignItems="center">
+                        <ListItem>
+                            <ListItemText id="switch-list-label-darkMode" primary={Meteor.user().profile.btcAddress} />
+                        </ListItem>
+                    </Grid>
+                </List>
+                <Divider />
+                <List className={classes.root}
+                subheader={<ListSubheader>Invited By</ListSubheader>}>
+                    <Grid container justify="center" alignItems="center">
+                        <ListItem>
+                            <ListItemText id="switch-list-label-darkMode" primary={sponsorName} />
                         </ListItem>
                     </Grid>
                 </List>

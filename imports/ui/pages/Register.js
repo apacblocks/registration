@@ -39,7 +39,7 @@ export default function Reg(props) {
             alert("Fields cant be empty")
             return
         }
-        if (password.length <= 6) {
+        if (password.length < 6) {
             alert("password needs to have at least 6 characters!");
             return
         }
@@ -54,14 +54,16 @@ export default function Reg(props) {
             profile: {
                 btcAddress: btc,
                 telegram: telName,
-                code: code
+                invitedBy: code
             }
         }, (err) => {
             if (!err) {
                 console.log('success');
+                alert("Account created!")
                 props.history.push('/')
             } else {
                 console.log(err.reason);
+                alert(err.reason)
             }
         })
     }
