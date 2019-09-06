@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -45,17 +45,16 @@ export default function Profile(props) {
         })
     }
 
-    if(!Meteor.user()){
+    if (!Meteor.user()) {
         props.history.push('/')
         return <></>
     }
-    
-    Meteor.call('getUsername',Meteor.user().profile.invitedBy,(err,data)=>{
-        if(!err){
+
+    Meteor.call('getUsername', Meteor.user().profile.invitedBy, (err, data) => {
+        if (!err) {
             setSponsorName(data)
         }
-        else
-        {
+        else {
             setSponsorName('Not Found')
         }
     })
@@ -90,8 +89,8 @@ export default function Profile(props) {
             </AppBar>
             <Toolbar id="back-to-top-anchor" />
             <Container style={{ minHeight: '100vh' }}>
-            <List className={classes.root}
-                subheader={<ListSubheader>Welcome to APAC Blocks!</ListSubheader>}>
+                <List className={classes.root}
+                    subheader={<ListSubheader>Welcome to APAC Blocks!</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
                             <a href="https://t.me/apacblocks">Click here to join everyone in the Telegram group.</a>
@@ -100,7 +99,7 @@ export default function Profile(props) {
                 </List>
                 <Divider />
                 <List className={classes.root}
-                subheader={<ListSubheader>Name</ListSubheader>}>
+                    subheader={<ListSubheader>Name</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
                             <ListItemText id="switch-list-label-darkMode" primary={Meteor.user().profile.realName} />
@@ -109,7 +108,7 @@ export default function Profile(props) {
                 </List>
                 <Divider />
                 <List className={classes.root}
-                subheader={<ListSubheader>Telegram</ListSubheader>}>
+                    subheader={<ListSubheader>Telegram</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
                             <ListItemText id="switch-list-label-darkMode" primary={Meteor.user().profile.telegram} />
@@ -118,25 +117,35 @@ export default function Profile(props) {
                 </List>
                 <Divider />
                 <List className={classes.root}
-                subheader={<ListSubheader>BTC address</ListSubheader>}>
+                    subheader={<ListSubheader>BTC address</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
-                            <ListItemText id="switch-list-label-darkMode" primary={Meteor.user().profile.btcAddress} />
+                            <ListItemText id="switch-list-label-darkMode" secondary={
+                                <React.Fragment>
+                                    <Typography
+                                        component="span"
+                                        variant="caption"
+                                        className={classes.inline}
+                                        color="textPrimary"
+                                    >
+                                        {Meteor.user().profile.btcAddress}
+                                    </Typography>
+                                </React.Fragment>} />
                         </ListItem>
                     </Grid>
                 </List>
                 <Divider />
                 <List className={classes.root}
-                subheader={<ListSubheader>Balance</ListSubheader>}>
+                    subheader={<ListSubheader>Balance</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
-                            <ListItemText id="switch-list-label-darkMode" primary={Meteor.user().profile.balance+ " APX"} />
+                            <ListItemText id="switch-list-label-darkMode" primary={Meteor.user().profile.balance + " APX"} />
                         </ListItem>
                     </Grid>
                 </List>
                 <Divider />
                 <List className={classes.root}
-                subheader={<ListSubheader>Invited By</ListSubheader>}>
+                    subheader={<ListSubheader>Invited By</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
                             <ListItemText id="switch-list-label-darkMode" primary={sponsorName} />
@@ -145,7 +154,7 @@ export default function Profile(props) {
                 </List>
                 <Divider />
                 <List className={classes.root}
-                subheader={<ListSubheader>Bio</ListSubheader>}>
+                    subheader={<ListSubheader>Bio</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
                             <ListItemText id="switch-list-label-darkMode" primary={Meteor.user().profile.bio} />
@@ -157,7 +166,7 @@ export default function Profile(props) {
                     subheader={<ListSubheader>Use this QR code to invite a new member</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
-                            <QRCode value={'APAC'+Meteor.userId()} size="100%" renderAs='svg'/>
+                            <QRCode value={'APAC' + Meteor.userId()} size="100%" renderAs='svg' />
                         </ListItem>
                     </Grid>
                 </List>
