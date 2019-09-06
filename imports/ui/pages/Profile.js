@@ -108,15 +108,6 @@ export default function Login(props) {
                 </List>
                 <Divider />
                 <List className={classes.root}
-                    subheader={<ListSubheader>Invitation QR code</ListSubheader>}>
-                    <Grid container justify="center" alignItems="center">
-                        <ListItem>
-                            <QRCode value={'APAC'+Meteor.userId()} size="100%" renderAs='svg'/>
-                        </ListItem>
-                    </Grid>
-                </List>
-                <Divider />
-                <List className={classes.root}
                 subheader={<ListSubheader>Telegram</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
@@ -135,10 +126,28 @@ export default function Login(props) {
                 </List>
                 <Divider />
                 <List className={classes.root}
+                subheader={<ListSubheader>Balance</ListSubheader>}>
+                    <Grid container justify="center" alignItems="center">
+                        <ListItem>
+                            <ListItemText id="switch-list-label-darkMode" primary={Meteor.user().profile.balance} />
+                        </ListItem>
+                    </Grid>
+                </List>
+                <Divider />
+                <List className={classes.root}
                 subheader={<ListSubheader>Invited By</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
                             <ListItemText id="switch-list-label-darkMode" primary={sponsorName} />
+                        </ListItem>
+                    </Grid>
+                </List>
+                <Divider />
+                <List className={classes.root}
+                    subheader={<ListSubheader>Invitation QR code</ListSubheader>}>
+                    <Grid container justify="center" alignItems="center">
+                        <ListItem>
+                            <QRCode value={'APAC'+Meteor.userId()} size="100%" renderAs='svg'/>
                         </ListItem>
                     </Grid>
                 </List>
