@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 export default function Join(props) {
   const classes = useStyles();
 
-
+  window.scrollTo(0, 0);
   handleScan = data => {
     if (data) {
       if (data.startsWith("APAC")) {

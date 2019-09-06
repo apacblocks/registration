@@ -74,7 +74,7 @@ function Login(props) {
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
-                                <TableCell>membership number</TableCell>
+                                <TableCell>Membership number</TableCell>
                                 <TableCell>Name</TableCell>
                                 <TableCell align="right">InvitedBy</TableCell>
                                 {/* <TableCell align="right">Joined Time</TableCell> */}

@@ -67,7 +67,7 @@ export default function Reg(props) {
                     if (!err) {
                         console.log('success');
                         alert("Account created!")
-                        props.history.push('/')
+                        props.history.push('/profile')
                     } else {
                         console.log(err.reason);
                         alert(err.reason)
