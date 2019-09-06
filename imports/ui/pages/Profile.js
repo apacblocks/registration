@@ -17,6 +17,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import ListSubheader from '@material-ui/core/ListSubheader'
 import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -74,7 +75,7 @@ export default function Login(props) {
                         <ArrowBack />
                     </IconButton>
                     <Typography className={classes.title} variant="h6" noWrap>
-                        APAC Block
+                        APAC Blocks
                     </Typography>
                     <div className={classes.grow} />
                     <IconButton
@@ -89,6 +90,15 @@ export default function Login(props) {
             </AppBar>
             <Toolbar id="back-to-top-anchor" />
             <Container style={{ minHeight: '100vh' }}>
+            <List className={classes.root}
+                subheader={<ListSubheader>Welcome to APAC Blocks!</ListSubheader>}>
+                    <Grid container justify="center" alignItems="center">
+                        <ListItem>
+                            <a href="https://t.me/apacblocks">Click here to join everyone in the Telegram group.</a>
+                        </ListItem>
+                    </Grid>
+                </List>
+                <Divider />
                 <List className={classes.root}
                 subheader={<ListSubheader>Name</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
@@ -144,7 +154,7 @@ export default function Login(props) {
                 </List>
                 <Divider />
                 <List className={classes.root}
-                    subheader={<ListSubheader>Invitation QR code</ListSubheader>}>
+                    subheader={<ListSubheader>Use this QR code to invite a new member</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
                             <QRCode value={'APAC'+Meteor.userId()} size="100%" renderAs='svg'/>
