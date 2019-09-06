@@ -83,7 +83,7 @@ export default function Main(props) {
         <p>When the 88th person has joined as a member, an on-chain state change will be triggered giving all members the ability the vote on what (if any) membership fee should be charged.</p>
         <h3>How to become a member</h3>
         <p>Click join below, you will be asked to scan the QR code of an existing member.</p>
-        <p>You will then be asked for a Bitcoin address, it is critical that you do not lose the private key for this address as this will be required for voting and recieving.</p>
+        <p>You will then be asked for a Bitcoin address, it is critical that you do not lose the private key for this address as this will be required for voting and recieving associated tokens.</p>
         <h3>How to invite a member</h3>
         <p>Simply login with your existing credentials, a QR code to invite new members will automatically be displayed.</p>
         </Box>
