@@ -26,7 +26,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function Reg(props) {
     const classes = useStyles();
-    const [userName, setUserName] = useState();
     const [realName, setRealName] = useState();
     const [telName, setTelName] = useState();
     const [email, setEmail] = useState();
@@ -36,7 +35,7 @@ export default function Reg(props) {
     const code = props.location.state.code;
 
     function register() {
-        if (userName == undefined || telName == undefined || email == undefined || password == undefined || btc == undefined || code == undefined || realName == undefined) {
+        if (telName == undefined || email == undefined || password == undefined || btc == undefined || code == undefined || realName == undefined) {
             alert("Fields cant be empty")
             return
         }
@@ -49,7 +48,7 @@ export default function Reg(props) {
             return
         }
         Accounts.createUser({
-            username: userName,
+            username: btc,
             email: email,
             password: password,
             profile: {
@@ -91,18 +90,6 @@ export default function Reg(props) {
             <Toolbar id="back-to-top-anchor" />
             <Container style={{ minHeight: '100vh' }}>
                 <Box my={2}>
-                    <TextField
-                        id="standard-full-width-user"
-                        label="Username"
-                        style={{ margin: 8 }}
-                        placeholder=""
-                        fullWidth
-                        margin="normal"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        onChange={() => { setUserName(event.target.value) }}
-                    />
                     <TextField
                         id="standard-full-width-user"
                         label="Real Name"

@@ -90,15 +90,6 @@ export default function Login(props) {
             <Toolbar id="back-to-top-anchor" />
             <Container style={{ minHeight: '100vh' }}>
                 <List className={classes.root}
-                subheader={<ListSubheader>User Name</ListSubheader>}>
-                    <Grid container justify="center" alignItems="center">
-                        <ListItem>
-                            <ListItemText id="switch-list-label-darkMode" primary={Meteor.user().username} />
-                        </ListItem>
-                    </Grid>
-                </List>
-                <Divider />
-                <List className={classes.root}
                 subheader={<ListSubheader>Name</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
