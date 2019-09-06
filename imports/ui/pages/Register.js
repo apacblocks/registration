@@ -33,6 +33,7 @@ export default function Reg(props) {
     const [password, setPassword] = useState();
     const [cPassword, setCPassword] = useState();
     const code = props.location.state.code;
+    const [sponsorName, setSponsorName] = useState();
 
     function register() {
         if (telName == undefined || email == undefined || password == undefined || btc == undefined || code == undefined || realName == undefined) {
@@ -47,23 +48,33 @@ export default function Reg(props) {
             alert("password not match!");
             return
         }
-        Accounts.createUser({
-            username: btc,
-            email: email,
-            password: password,
-            profile: {
-                btcAddress: btc,
-                telegram: telName,
-                balance: 1000,
-                invitedBy: code,
-                realName: realName
-            }
-        }, (err) => {
+
+        Meteor.call('getUsername', code, (err, data) => {
             if (!err) {
-                console.log('success');
-                alert("Account created!")
-                props.history.push('/')
-            } else {
+                Accounts.createUser({
+                    username: btc,
+                    email: email,
+                    password: password,
+                    profile: {
+                        btcAddress: btc,
+                        telegram: telName,
+                        balance: 1000,
+                        invitedBy: code,
+                        sponsorName: data,
+                        realName: realName
+                    }
+                }, (err) => {
+                    if (!err) {
+                        console.log('success');
+                        alert("Account created!")
+                        props.history.push('/')
+                    } else {
+                        console.log(err.reason);
+                        alert(err.reason)
+                    }
+                })
+            }
+            else {
                 console.log(err.reason);
                 alert(err.reason)
             }

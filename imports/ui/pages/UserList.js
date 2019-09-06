@@ -87,7 +87,7 @@ function Login(props) {
                                     <TableCell component="th" scope="row">
                                         {user.profile.realName}
                                     </TableCell>
-                                    <TableCell align="right">{searchUser(user.profile.invitedBy)}</TableCell>
+                                    <TableCell align="right">{user.profile.sponsorName}</TableCell>
                                     <TableCell align="right">{userJoinTime(user)}</TableCell>
                                 </TableRow>
                             ))}
