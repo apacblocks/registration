@@ -41,54 +41,73 @@ function Login(props) {
 
         }
     }
-    return (
-        <React.Fragment>
-            <CssBaseline />
-            <AppBar>
-                <Toolbar>
-                    <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="go back"
-                        onClick={() => window.history.back()}
-                    >
-                        <ArrowBack />
-                    </IconButton>
-                    <Typography variant="h6">APAC Block</Typography>
-                </Toolbar>
-            </AppBar>
-            <Toolbar id="back-to-top-anchor" />
-            <Container style={{ minHeight: '100vh' }}>
 
-                <Table className={classes.table}>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Username</TableCell>
-                            <TableCell align="right">Join Time</TableCell>
-                            <TableCell align="right">invitedBy</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {props.users.map(user => (
-                            <TableRow key={user.username}>
-                                <TableCell component="th" scope="row">
-                                    {user.username}
-                                </TableCell>
-                                <TableCell align="right">{userJoinTime(user)}</TableCell>
-                                <TableCell align="right">{user.profile.invitedBy}</TableCell>
+    if (props.ready){
+        function searchUser(id) {
+            props.users.forEach((user) => {
+                if (user._id == id) {
+                    console.log(user.profile.realName)
+                    return user.profile.realName
+                }
+            })
+        }
+        return (
+            <React.Fragment>
+                <CssBaseline />
+                <AppBar>
+                    <Toolbar>
+                        <IconButton
+                            edge="start"
+                            className={classes.menuButton}
+                            color="inherit"
+                            aria-label="go back"
+                            onClick={() => window.history.back()}
+                        >
+                            <ArrowBack />
+                        </IconButton>
+                        <Typography variant="h6">APAC Block</Typography>
+                    </Toolbar>
+                </AppBar>
+                <Toolbar id="back-to-top-anchor" />
+                <Container style={{ minHeight: '100vh' }}>
+
+                    <Table className={classes.table}>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>membership number</TableCell>
+                                <TableCell>Name</TableCell>
+                                <TableCell align="right">InvitedBy</TableCell>
+                                <TableCell align="right">Joined Time</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </Container>
-        </React.Fragment>
-    );
+                        </TableHead>
+                        <TableBody>
+                            {props.users.map((user, index) => (
+                                <TableRow key={user.username}>
+                                    <TableCell>{index}</TableCell>
+                                    <TableCell component="th" scope="row">
+                                        {user.profile.realName}
+                                    </TableCell>
+                                    <TableCell align="right">{searchUser(user.profile.invitedBy)}</TableCell>
+                                    <TableCell align="right">{userJoinTime(user)}</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </Container>
+            </React.Fragment>
+        );
+    }
+    else {
+        return (
+            <></>
+        )
+    }
 }
 
 export default withTracker(() => {
-    Meteor.subscribe('userlist');
+    const handle = Meteor.subscribe('userlist');
     return {
-        users: Meteor.users.find({}).fetch(),
+        users: Meteor.users.find({}, { sort: { createdAt: 1 } }).fetch(),
+        ready: handle.ready()
     };
 })(Login);

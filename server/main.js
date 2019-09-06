@@ -35,7 +35,7 @@ Meteor.publish('userlist', () => Meteor.users.find({}))
 Meteor.methods({
     getUsername(_id) {
       check(_id, String);
-        return Meteor.users.findOne({_id: _id}).username
+        return Meteor.users.findOne({_id: _id}).profile.realName
     },
   });
   
