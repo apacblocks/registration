@@ -9,6 +9,7 @@ import Join from '../../ui/pages/Join'
 import Login from '../../ui/pages/Login'
 import Register from '../../ui/pages/Register'
 import Profile from '../../ui/pages/Profile'
+import UserList from '../../ui/pages/UserList'
 
 const browserHistory = history.createBrowserHistory();
 
@@ -20,6 +21,7 @@ export const renderRoutes = () => (
       <Route exact path="/login" component={Login}/>
       <Route exact path="/register" component={Register}/>
       <Route exact path="/profile" component={Profile}/>
+      <Route exact path="/userlist" component={UserList}/>
       <Route component={NotFoundPage}/>
     </Switch>
   </Router>

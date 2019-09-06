@@ -29,10 +29,15 @@ export default function Join(props) {
 
   handleScan = data => {
     if (data) {
-        console.log(data)
-        props.history.push('/register', {code: data})
+      if (data.startsWith("APAC")) {
+        props.history.push('/register', { code: data.slice(4) })
+      }
+      else {
+        console.log("the scanned QR code is not an APAC invitation code.")
+      }
     }
   }
+
   handleError = err => {
     console.error(err)
   }
@@ -44,15 +49,15 @@ export default function Join(props) {
       <CssBaseline />
       <AppBar>
         <Toolbar>
-        <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="go back"
-                        onClick={() => window.history.back()}
-                    >
-                        <ArrowBack />
-                    </IconButton>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="go back"
+            onClick={() => window.history.back()}
+          >
+            <ArrowBack />
+          </IconButton>
           <Typography variant="h6">APAC Blocks</Typography>
         </Toolbar>
       </AppBar>
@@ -62,12 +67,12 @@ export default function Join(props) {
           <h2>Please scan your sponsor's QR code</h2>
           <p>You must be physically in attendance at an APAC Blocks event to become a member and you must be sponsored by an existing member.</p>
           <p>You will be asked to allow this site to access your camera. If you are having problems, please try another browser.</p>
-        <QrReader
-          delay={300}
-          onError={this.handleError}
-          onScan={this.handleScan}
-          style={{ maxWidth: 500 , margin: '0 auto'}}
-        />
+          <QrReader
+            delay={300}
+            onError={this.handleError}
+            onScan={this.handleScan}
+            style={{ maxWidth: 500, margin: '0 auto' }}
+          />
         </Box>
       </Container>
     </React.Fragment>
