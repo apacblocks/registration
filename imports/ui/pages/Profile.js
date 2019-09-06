@@ -99,7 +99,7 @@ export default function Login(props) {
                 </List>
                 <Divider />
                 <List className={classes.root}
-                subheader={<ListSubheader>User Name</ListSubheader>}>
+                subheader={<ListSubheader>Name</ListSubheader>}>
                     <Grid container justify="center" alignItems="center">
                         <ListItem>
                             <ListItemText id="switch-list-label-darkMode" primary={Meteor.user().profile.realName} />
