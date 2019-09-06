@@ -65,7 +65,7 @@ function Login(props) {
                         >
                             <ArrowBack />
                         </IconButton>
-                        <Typography variant="h6">APAC Block</Typography>
+                        <Typography variant="h6">APAC Blocks</Typography>
                     </Toolbar>
                 </AppBar>
                 <Toolbar id="back-to-top-anchor" />
