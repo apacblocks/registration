@@ -25,6 +25,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Reg(props) {
+    try{
+        const code = props.location.state.code;
+    }
+    catch(err){
+        props.history.push('/')
+    }
     const classes = useStyles();
     const [realName, setRealName] = useState();
     const [telName, setTelName] = useState();
@@ -32,11 +38,10 @@ export default function Reg(props) {
     const [btc, setBtc] = useState();
     const [password, setPassword] = useState();
     const [cPassword, setCPassword] = useState();
-    const code = props.location.state.code;
     const [bio, setBio] = useState();
-
+    
     function register() {
-        if (bio == undefined || telName == undefined || email == undefined || password == undefined || btc == undefined || code == undefined || realName == undefined) {
+        if (bio == undefined || telName == undefined || email == undefined || password == undefined || btc == undefined || props.location.state.code == undefined || realName == undefined) {
             alert("Fields cant be empty")
             return
         }
@@ -48,7 +53,7 @@ export default function Reg(props) {
             alert("password not match!");
             return
         }
-        Meteor.call('getUsername', code, (err, data) => {
+        Meteor.call('getUsername', props.location.state.code, (err, data) => {
             if (!err) {
                 Accounts.createUser({
                     username: btc,
@@ -58,7 +63,7 @@ export default function Reg(props) {
                         btcAddress: btc,
                         telegram: telName,
                         balance: 1000,
-                        invitedBy: code,
+                        invitedBy: props.location.state.code,
                         sponsorName: data,
                         realName: realName,
                         bio: bio,
