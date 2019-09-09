@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
-import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
-import ArrowBack from '@material-ui/icons/ArrowBack'
-import IconButton from '@material-ui/core/IconButton'
 import { Meteor } from 'meteor/meteor'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import { withTracker } from 'meteor/react-meteor-data';
+import BottomNav from './Shared/BottomNav';
+import TopNav from './Shared/TopNav';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -54,20 +50,7 @@ function Login(props) {
         return (
             <React.Fragment>
                 <CssBaseline />
-                <AppBar>
-                    <Toolbar>
-                        <IconButton
-                            edge="start"
-                            className={classes.menuButton}
-                            color="inherit"
-                            aria-label="go back"
-                            onClick={() => window.history.back()}
-                        >
-                            <ArrowBack />
-                        </IconButton>
-                        <Typography variant="h6">APAC Blocks</Typography>
-                    </Toolbar>
-                </AppBar>
+                <TopNav />
                 <Toolbar id="back-to-top-anchor" />
                 <Container style={{ minHeight: '100vh' }}>
 
@@ -94,6 +77,7 @@ function Login(props) {
                         </TableBody>
                     </Table>
                 </Container>
+                <BottomNav current="userlist" />
             </React.Fragment>
         );
     }
