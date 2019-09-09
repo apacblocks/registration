@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
-import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
-import Logout from '@material-ui/icons/ExitToApp'
-import ArrowBack from '@material-ui/icons/ArrowBack'
-import IconButton from '@material-ui/core/IconButton'
 import { Meteor } from 'meteor/meteor'
 import QRCode from 'qrcode.react';
 import List from '@material-ui/core/List'
@@ -17,7 +12,8 @@ import ListItemText from '@material-ui/core/ListItemText'
 import ListSubheader from '@material-ui/core/ListSubheader'
 import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
+import BottomNav from './Shared/BottomNav';
+import TopNav from './Shared/TopNav';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -62,31 +58,7 @@ export default function Profile(props) {
     return (
         <React.Fragment>
             <CssBaseline />
-            <AppBar>
-                <Toolbar>
-                    <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="go back"
-                        onClick={() => props.history.push('/')}
-                    >
-                        <ArrowBack />
-                    </IconButton>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        APAC Blocks
-                    </Typography>
-                    <div className={classes.grow} />
-                    <IconButton
-                        edge="end"
-                        aria-label="more"
-                        onClick={() => { logout() }}
-                        color="inherit"
-                    >
-                        <Logout />
-                    </IconButton>
-                </Toolbar>
-            </AppBar>
+            <TopNav />
             <Toolbar id="back-to-top-anchor" />
             <Container style={{ minHeight: '100vh' }}>
                 <List className={classes.root}
@@ -172,6 +144,7 @@ export default function Profile(props) {
                 </List>
                 <Divider />
             </Container>
+            <BottomNav current="profile" />
         </React.Fragment>
     );
 }
