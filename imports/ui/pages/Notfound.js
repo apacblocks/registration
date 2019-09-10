@@ -10,6 +10,7 @@ import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
 import TopNav from './Shared/TopNav';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,14 +64,21 @@ ScrollTop.propTypes = {
 
 export default function BackToTop(props) {
   const classes = useStyles();
+  const topNavStart = {
+    icon: (<ArrowBackIcon />),
+    title: "Not found",
+    func: () => {
+      window.history.back()
+    }
+  }
   return (
     <React.Fragment>
       <CssBaseline />
-      <TopNav />
+      <TopNav topNavStart={topNavStart} />
       <Toolbar id="back-to-top-anchor" />
       <Container style={{ minHeight: '100vh' }}>
         <Box my={2}>
-            Page Not Found
+          Page Not Found
         </Box>
       </Container>
       <ScrollTop {...props}>

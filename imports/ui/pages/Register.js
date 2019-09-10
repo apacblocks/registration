@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import TopNav from './Shared/TopNav';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -35,6 +36,13 @@ export default function Reg(props) {
     const [password, setPassword] = useState();
     const [cPassword, setCPassword] = useState();
     const [bio, setBio] = useState();
+    const topNavStart = {
+        icon: (<SupervisedUserCircleIcon />),
+        title: "Register",
+        func: () => {
+            props.history.push('/welcome')
+        }
+    }
     
     function register() {
         if (bio == undefined || telName == undefined || email == undefined || password == undefined || btc == undefined || props.location.state.code == undefined || realName == undefined) {
@@ -85,7 +93,7 @@ export default function Reg(props) {
     return (
         <React.Fragment>
             <CssBaseline />
-            <TopNav />
+            <TopNav topNavStart={topNavStart} />
             <Toolbar id="back-to-top-anchor" />
             <Container style={{ minHeight: '100vh' }}>
                 <Box my={2}>
@@ -128,7 +136,7 @@ export default function Reg(props) {
                     />
                     <TextField
                         id="standard-full-width-btc"
-                        label="BTC address"
+                        label="BTC address"x
                         style={{ margin: 8 }}
                         placeholder=""
                         helperText="DO NOT lose your private key for this address :)"

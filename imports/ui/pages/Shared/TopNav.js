@@ -7,30 +7,30 @@ import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import Logout from '@material-ui/icons/ExitToApp'
 import { makeStyles } from '@material-ui/core/styles';
 
-const TopNav = () => {
+const TopNav = (props) => {
     const useStyles = makeStyles(theme => ({
         grow: {
             flexGrow: 1,
         }
     }));
+    
     const classes = useStyles();
+
     const logout = () => {
-        Meteor.logout((err) => {
-            if (!err) {
-                this.window.history.go('/')
-            }
-            else {
-                console.log(err);
-                alert(err);
-            }
-        })
+        if (props.edgeEndFn) {
+            props.edgeEndFn()
+        } else {
+            Meteor.logout((err) => {
+                if (!err) {
+                    this.window.history.go('/')
+                }
+                else {
+                    console.log(err);
+                    alert(err);
+                }
+            })
+        }
     };
-
-    let logoutBtn;
-
-    if (Meteor.user()) {
-        logoutBtn = (<IconButton edge="end" onClick={() => { logout() }} color="inherit" > <Logout /> </IconButton>);
-    }
 
     return (
         <AppBar position="fixed" elevation={0}>
@@ -40,15 +40,15 @@ const TopNav = () => {
                     className={classes.menuButton}
                     color="inherit"
                     aria-label="go back"
-                    onClick={() => window.history.back()}
+                    onClick={props.topNavStart && props.topNavStart.func} 
                 >
-                    <SupervisedUserCircleIcon />
+                    {props.topNavStart && props.topNavStart.icon}
                 </IconButton>
                 <Typography className={classes.title} variant="h6" noWrap>
-                    APAC Blocks
+                    {props.topNavStart && props.topNavStart.title}
                 </Typography>
                 <div className={classes.grow} />
-                {logoutBtn}
+                {props.topNavEnd}
             </Toolbar>
         </AppBar>
     )
