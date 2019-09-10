@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 import QrReader from 'react-qr-reader'
 import { Meteor } from 'meteor/meteor';
 import TopNav from './Shared/TopNav';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,6 +23,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function Join(props) {
   const classes = useStyles();
+  const topNavStart = {
+    icon: (<SupervisedUserCircleIcon />),
+    title: "Join",
+    func: () => {
+      props.history.push('/welcome')
+    }
+  }
 
   window.scrollTo(0, 0);
   handleScan = data => {
@@ -46,7 +54,7 @@ export default function Join(props) {
     return (
       <React.Fragment>
         <CssBaseline />
-        <TopNav />
+        <TopNav topNavStart={topNavStart} />
         <Toolbar id="back-to-top-anchor" />
         <Container style={{ minHeight: '100vh' }}>
           <Box my={2}>
@@ -61,7 +69,7 @@ export default function Join(props) {
     return (
       <React.Fragment>
         <CssBaseline />
-        <TopNav />
+        <TopNav topNavStart={topNavStart} />
         <Toolbar id="back-to-top-anchor" />
         <Container style={{ minHeight: '100vh' }}>
           <Box my={2}>

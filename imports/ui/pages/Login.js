@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Meteor } from 'meteor/meteor'
 import TopNav from './Shared/TopNav';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -28,6 +29,13 @@ export default function Login(props) {
     const classes = useStyles();
     const [userName, setUserName] = useState();
     const [password, setPassword] = useState();
+    const topNavStart = {
+        icon: (<SupervisedUserCircleIcon />),
+        title: "Login",
+        func: () => {
+            props.history.push('/welcome')
+        }
+    }
 
     function login() {
         if(userName==undefined|| password == undefined){
@@ -47,7 +55,7 @@ export default function Login(props) {
     return (
         <React.Fragment>
             <CssBaseline />
-            <TopNav />
+            <TopNav topNavStart={topNavStart} />
             <Toolbar id="back-to-top-anchor" />
             <Container style={{ minHeight: '100vh' }}>
                 <Box my={2}>

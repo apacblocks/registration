@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,6 +11,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
 import TopNav from './Shared/TopNav';
 import BottomNav from './Shared/BottomNav';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -69,11 +70,18 @@ ScrollTop.propTypes = {
 
 export default function Main(props) {
   window.scrollTo(0, 0);
+  const topNavStart = {
+    icon: (<SupervisedUserCircleIcon />),
+    title: "Welcome",
+    func: () => {
+      props.history.push('/welcome')
+    }
+  }
 
   return (
     <React.Fragment>
       <CssBaseline />
-      <TopNav />
+      <TopNav topNavStart={topNavStart} />
       <Toolbar id="back-to-top-anchor" />
       <Container style={{ minHeight: '100vh' }}>
         <Box my={2}>

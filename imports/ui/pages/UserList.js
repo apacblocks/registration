@@ -12,6 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { withTracker } from 'meteor/react-meteor-data';
 import BottomNav from './Shared/BottomNav';
 import TopNav from './Shared/TopNav';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -27,6 +28,13 @@ const useStyles = makeStyles(theme => ({
 
 function Login(props) {
     const classes = useStyles();
+    const topNavStart = {
+        icon: (<SupervisedUserCircleIcon />),
+        title: "Users",
+        func: () => {
+            props.history.push('/welcome')
+        }
+    }
 
     function userJoinTime(user) {
         if (user.createdAt == undefined) {
@@ -50,7 +58,7 @@ function Login(props) {
         return (
             <React.Fragment>
                 <CssBaseline />
-                <TopNav />
+                <TopNav topNavStart={topNavStart} />
                 <Toolbar id="back-to-top-anchor" />
                 <Container style={{ minHeight: '100vh' }}>
 
