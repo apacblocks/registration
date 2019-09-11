@@ -60,7 +60,7 @@ function Login(props) {
                 <CssBaseline />
                 <TopNav topNavStart={topNavStart} />
                 <Toolbar id="back-to-top-anchor" />
-                <Container style={{ minHeight: '100vh' }}>
+                <Container style={{ minHeight: '100vh', marginBottom: '80px' }}>
 
                     <Table className={classes.table}>
                         <TableHead>
