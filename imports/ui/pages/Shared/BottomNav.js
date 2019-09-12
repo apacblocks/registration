@@ -33,6 +33,9 @@ const BottomNav = (props) => {
         footer: {
             top: 'auto',
             bottom: 0,
+        },
+        noMaxWidth: {
+            maxWidth: 'none',
         }
     }));
 
@@ -73,11 +76,11 @@ const BottomNav = (props) => {
                 onChange={onChangeTab}
                 className={classes.stickToBottom}
             >
-                <BottomNavigationAction component={Link} to="/welcome" label="Home" value="welcome" icon={<HomeIcon />} />
-                <BottomNavigationAction component={Link} to="/userlist" label="Users" value="userlist" icon={<SupervisedUserCircleIcon />} />
-                <BottomNavigationAction component={Link} to="/propose" label="Propose" value="propose" icon={<AddCircleOutlineIcon />} />
-                <BottomNavigationAction component={Link} to="/profile" label="Profile" value="profile" icon={<AccountCircleIcon />} />
-                <BottomNavigationAction onClick={handleMenuClick} label="More" value="more" icon={<MoreVertIcon />} />
+                <BottomNavigationAction className={classes.noMaxWidth} component={Link} to="/welcome" label="Home" value="welcome" icon={<HomeIcon />} />
+                <BottomNavigationAction className={classes.noMaxWidth} component={Link} to="/userlist" label="Users" value="userlist" icon={<SupervisedUserCircleIcon />} />
+                <BottomNavigationAction className={classes.noMaxWidth} component={Link} to="/propose" label="Propose" value="propose" icon={<AddCircleOutlineIcon />} />
+                <BottomNavigationAction className={classes.noMaxWidth} component={Link} to="/profile" label="Profile" value="profile" icon={<AccountCircleIcon />} />
+                <BottomNavigationAction className={classes.noMaxWidth} onClick={handleMenuClick} label="More" value="more" icon={<MoreVertIcon />} />
             </BottomNavigation>) : (
                     <Toolbar>
                         <Route render={({ history }) => (
