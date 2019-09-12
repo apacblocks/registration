@@ -1,4 +1,10 @@
 import '../imports/api/account'
+
+// Topics imports
+import '../imports/api/topics/topics'
+import '../imports/api/topics/methods'
+import '../imports/api/topics/server/publications'
+
 import { Meteor } from 'meteor/meteor'
 import { check } from 'meteor/check'
 
