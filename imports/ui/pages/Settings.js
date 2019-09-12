@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { CssBaseline, Container, TextField, Divider, Button, IconButton } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import { CssBaseline, Container, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TopNav from './Shared/TopNav';
 import BottomNav from './Shared/BottomNav';
@@ -78,47 +77,47 @@ function Settings(props) {
                 <CssBaseline />
                 <TopNav topNavStart={topNavStart} topNavEnd={topNavEnd} />
                 <Container style={{ marginTop: '70px' }}>
-                    <Typography variant="h2" gutterBottom>
-                        <form>
-                            <TextField
-                                id="btcAddress"
-                                label="BTC Address"
-                                className={classes.textField}
-                                value={profileValues.btcAddress}
-                                onChange={handleProfileChange('btcAddress')}
-                                margin="normal"
-                                variant="outlined"
-                                fullWidth={true}
-                            />
-                            <TextField
-                                id="telegram"
-                                label="Telegram Username"
-                                className={classes.textField}
-                                value={profileValues.telegram}
-                                onChange={handleProfileChange('telegram')}
-                                margin="normal"
-                                variant="outlined"
-                                fullWidth={true}
-                            />
-                            <TextField
-                                id="bio"
-                                label="Personal Bio"
-                                multiline
-                                rows="4"
-                                defaultValue={profileValues.bio}
-                                onChange={handleProfileChange('bio')}
-                                className={classes.textField}
-                                margin="normal"
-                                variant="outlined"
-                                fullWidth={true}
-                                style={{ marginTop: "20px" }}
-                            />
-                        </form>
-                    </Typography>
+
+                    <form>
+                        <TextField
+                            id="btcAddress"
+                            label="BTC Address"
+                            className={classes.textField}
+                            value={profileValues.btcAddress}
+                            onChange={handleProfileChange('btcAddress')}
+                            margin="normal"
+                            variant="outlined"
+                            fullWidth={true}
+                        />
+                        <TextField
+                            id="telegram"
+                            label="Telegram Username"
+                            className={classes.textField}
+                            value={profileValues.telegram}
+                            onChange={handleProfileChange('telegram')}
+                            margin="normal"
+                            variant="outlined"
+                            fullWidth={true}
+                        />
+                        <TextField
+                            id="bio"
+                            label="Personal Bio"
+                            multiline
+                            rows="4"
+                            defaultValue={profileValues.bio}
+                            onChange={handleProfileChange('bio')}
+                            className={classes.textField}
+                            margin="normal"
+                            variant="outlined"
+                            fullWidth={true}
+                            style={{ marginTop: "20px" }}
+                        />
+                    </form>
+
                     <SnackbarWrapper
                         open={snackbar.open}
                         variant={snackbar.variant}
-                        message={snackbar.message} 
+                        message={snackbar.message}
                         className={classes.margin}
                     />
                 </Container>
