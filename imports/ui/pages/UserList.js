@@ -13,12 +13,13 @@ import { withTracker } from 'meteor/react-meteor-data';
 import BottomNav from './Shared/BottomNav';
 import TopNav from './Shared/TopNav';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import { List, ListItem, ListItemAvatar, Avatar, ListItemText, Divider, Typography } from '@material-ui/core';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        position: 'fixed',
-        bottom: 80,
-        right: theme.spacing(2),
+        width: '100%',
+        backgroundColor: theme.palette.background.paper,
     },
     footer: {
         top: 'auto',
@@ -27,14 +28,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Login(props) {
-    const classes = useStyles();
+    const classes = useStyles(); 
     const topNavStart = {
         icon: (<SupervisedUserCircleIcon />),
         title: "Users",
         func: () => {
             props.history.push('/welcome')
         }
-    }
+    };
 
     function userJoinTime(user) {
         if (user.createdAt == undefined) {
@@ -46,11 +47,14 @@ function Login(props) {
         }
     }
 
-    if (props.ready){
+    if (props.ready) {
+        const goToProfile = (userId) => {
+            props.history.push(`/users/${userId}`);
+        };
+
         function searchUser(id) {
             props.users.forEach((user) => {
                 if (user._id == id) {
-                    console.log(user.profile.realName)
                     return user.profile.realName
                 }
             })
@@ -60,30 +64,41 @@ function Login(props) {
                 <CssBaseline />
                 <TopNav topNavStart={topNavStart} />
                 <Toolbar id="back-to-top-anchor" />
-                <Container style={{ minHeight: '100vh', marginBottom: '80px' }}>
-
-                    <Table className={classes.table}>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Membership number</TableCell>
-                                <TableCell>Name</TableCell>
-                                <TableCell align="right">InvitedBy</TableCell>
-                                {/* <TableCell align="right">Joined Time</TableCell> */}
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {props.users.map((user, index) => (
-                                <TableRow key={user.username}>
-                                    <TableCell>{index}</TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {user.profile.realName}
-                                    </TableCell>
-                                    <TableCell align="right">{user.profile.sponsorName}</TableCell>
-                                    {/* <TableCell align="right">{userJoinTime(user)}</TableCell> */}
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                <Container style={{ marginBottom: '80px' }}>
+                    <List className={classes.root}>
+                        {props.users.map((user, index) => (
+                            <div key={index}>
+                                <ListItem
+                                    alignItems="flex-start"
+                                    onClick={() => { goToProfile(user._id) }}
+                                    button
+                                >
+                                    <ListItemAvatar>
+                                        <Avatar alt={user.profile.realName}>
+                                            <AccountCircleIcon />
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText
+                                        primary={user.profile.realName}
+                                        secondary={
+                                            <React.Fragment>
+                                                <Typography
+                                                    component="span"
+                                                    variant="body2"
+                                                    className={classes.inline}
+                                                    color="textPrimary"
+                                                >
+                                                    Invited by
+                                              </Typography>
+                                                {` - ${user.profile.sponsorName}`}
+                                            </React.Fragment>
+                                        }
+                                    />
+                                </ListItem>
+                                <Divider variant="inset" component="li" />
+                            </div>
+                        ))}
+                    </List>
                 </Container>
                 <BottomNav current="userlist" />
             </React.Fragment>

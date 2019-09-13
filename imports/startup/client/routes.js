@@ -14,6 +14,7 @@ import UserList from '../../ui/pages/UserList'
 import Settings from '../../ui/pages/Settings'
 import Topics from '../../ui/pages/Topics';
 import ProposeTopic from '../../ui/pages/Topics/ProposeTopic.js';
+import ViewProfile from '../../ui/pages/Users/ViewProfile.js';
 
 const browserHistory = history.createBrowserHistory();
 
@@ -27,6 +28,7 @@ export const renderRoutes = () => (
       <Route exact path="/register" component={Register}/>
       <Route exact path="/profile" component={Profile}/>
       <Route exact path="/userlist" component={UserList}/>
+      <Route exact path="/users/:_id" component={ViewProfile}/>
       <Route exact path="/settings" component={Settings}/>
       <Route exact path="/topics" component={Topics}/>
       <Route exact path="/propose" component={ProposeTopic}/>
