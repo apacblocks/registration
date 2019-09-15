@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { CssBaseline, Container, TextField, Button } from '@material-ui/core';
+import { CssBaseline, Container, TextField, Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TopNav from '../Shared/TopNav';
 import { Meteor } from 'meteor/meteor';
@@ -21,19 +21,41 @@ const useStyles = makeStyles(theme => ({
     margin: {
         margin: theme.spacing(8, 1),
     },
+    charCount: {
+        fontStyle: "italic",
+        color: "#999",
+        fontSize: "0.875rem"
+    }
 }));
 
 function ProposeTopic(props) {
     const classes = useStyles();
     const [topicErr, setTopicErr] = useState({});
     const [snackbar, setSnackbar] = useState({ open: false, variant: 'success', message: '' });
+    const [topic, setTopic] = useState({ title: '', summary: '', details: '' });
 
-    const [topic, setTopic] = useState({
-        title: '', summary: '', details: ''
+    const [formCharCount, setFormChartCount] = useState({
+        title: {
+            max: 70,
+            current: 0
+        },
+        summary: {
+            max: 500,
+            current: 0
+        },
+        details: {
+            max: 160,
+            current: 0
+        }
     });
 
     const handleTopicChange = name => event => {
         setTopic({ ...topic, [name]: event.target.value });
+
+        setFormChartCount({
+            ...formCharCount,
+            [name]: { ...formCharCount[name], current: event.target.value.length }
+        });
     };
 
     const topNavStart = {
@@ -90,6 +112,10 @@ function ProposeTopic(props) {
                         fullWidth={true}
                         helperText={topicErr.title}
                     />
+                    <Typography component="span" className={classes.charCount}>
+                        {formCharCount.title.max - formCharCount.title.current + " characters left."}
+                    </Typography>
+                    
                     <TextField
                         error={(topicErr.summary && topicErr.summary.length > 1)}
                         id="topicSummary"
@@ -105,6 +131,10 @@ function ProposeTopic(props) {
                         fullWidth={true}
                         helperText={topicErr.summary}
                     />
+                    <Typography component="span" className={classes.charCount}>
+                        {formCharCount.summary.max - formCharCount.summary.current + " characters left."}
+                    </Typography>
+
                     <TextField
                         error={(topicErr.details && topicErr.details.length > 1)}
                         id="topicDetails"
@@ -121,6 +151,10 @@ function ProposeTopic(props) {
                         style={{ marginTop: "20px" }}
                         helperText={topicErr.details}
                     />
+                    <Typography component="span" className={classes.charCount}>
+                        {formCharCount.details.max - formCharCount.summary.current + " characters left."}
+                    </Typography>
+
                 </form>
                 <SnackbarWrapper
                     open={snackbar.open}
