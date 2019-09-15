@@ -15,6 +15,7 @@ import Settings from '../../ui/pages/Settings'
 import Topics from '../../ui/pages/Topics';
 import ProposeTopic from '../../ui/pages/Topics/ProposeTopic.js';
 import ViewProfile from '../../ui/pages/Users/ViewProfile.js';
+import ViewTopic from '../../ui/pages/Topics/ViewTopic.js';
 
 const browserHistory = history.createBrowserHistory();
 
@@ -31,6 +32,7 @@ export const renderRoutes = () => (
       <Route exact path="/users/:_id" component={ViewProfile}/>
       <Route exact path="/settings" component={Settings}/>
       <Route exact path="/topics" component={Topics}/>
+      <Route exact path="/topics/:_id" component={ViewTopic}/>
       <Route exact path="/propose" component={ProposeTopic}/>
       <Route component={NotFoundPage}/>
     </Switch>
