@@ -4,17 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import { Meteor } from 'meteor/meteor'
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import { withTracker } from 'meteor/react-meteor-data';
 import BottomNav from './Shared/BottomNav';
 import TopNav from './Shared/TopNav';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
-import { List, ListItem, ListItemAvatar, Avatar, ListItemText, Divider, Typography } from '@material-ui/core';
+import { List, ListItem, ListItemAvatar, Avatar, ListItemText, Divider, Typography, ListItemSecondaryAction } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { userInvites } from '../helpers';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -28,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Login(props) {
-    const classes = useStyles(); 
+    const classes = useStyles();
     const topNavStart = {
         icon: (<SupervisedUserCircleIcon />),
         title: "Users",
@@ -89,11 +85,21 @@ function Login(props) {
                                                     color="textPrimary"
                                                 >
                                                     Invited by
-                                              </Typography>
+                                                </Typography>
                                                 {` - ${user.profile.sponsorName}`}
                                             </React.Fragment>
                                         }
                                     />
+                                    <ListItemSecondaryAction>
+                                        <Typography
+                                            component="span"
+                                            variant="body2"
+                                            className={classes.inline}
+                                            color="textPrimary"
+                                        >
+                                            {userInvites(user)} Invites
+                                        </Typography>
+                                    </ListItemSecondaryAction>
                                 </ListItem>
                                 <Divider variant="inset" component="li" />
                             </div>
