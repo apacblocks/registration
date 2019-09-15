@@ -41,10 +41,12 @@ function checkInviteLimit(id) {
     }
     return false
 }
+
 function verifyTime() {
     if ((1567774800000 - Date.now()) > 0) { return true }
     return false
 }
+
 Meteor.publish('userlist', (userId) => {
     if (userId) {
         return Meteor.users.find({ _id: userId });

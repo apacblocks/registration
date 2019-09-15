@@ -10,6 +10,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
+import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
+import { formatDateTime, userInvites } from '../../helpers';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -67,9 +69,15 @@ function ViewProfile(props) {
                         {props.user.profile.realName}
                     </Typography>
 
-                    <Typography variant="body1" component="span" gutterBottom>
-                        Invited by - {props.user.profile.sponsorName}
-                    </Typography>
+                    <div>
+                        <RoomOutlinedIcon style={{ marginBottom: '-5px' }} />
+                        <Typography variant="body1" component="span" color="textSecondary" gutterBottom>
+                            {` ${formatDateTime(props.user.createdAt)}`} 
+                        </Typography>
+                        <Typography variant="body1" component="span" gutterBottom>
+                           {` | ${userInvites(props.user)} Invites`}
+                        </Typography>
+                    </div>
 
                 </Grid>
                 <Container style={{ marginTop: '10px' }}>
@@ -106,6 +114,16 @@ function ViewProfile(props) {
                                 primary="Bio"
                                 primaryTypographyProps={{ component: "h6", style: { fontWeight: 600 } }}
                                 secondary={props.user.profile.bio}
+                                secondaryTypographyProps={{ variant: "subtitle1", style: { wordWrap: 'break-word' } }}
+                            />
+                        </ListItem>
+
+                        <Divider component="li" />
+                        <ListItem>
+                            <ListItemText
+                                primary="Invited By"
+                                primaryTypographyProps={{ component: "h6", style: { fontWeight: 600 } }}
+                                secondary={props.user.profile.sponsorName}
                                 secondaryTypographyProps={{ variant: "subtitle1", style: { wordWrap: 'break-word' } }}
                             />
                         </ListItem>
