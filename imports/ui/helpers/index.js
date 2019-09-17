@@ -1,14 +1,12 @@
 import { Meteor } from "meteor/meteor";
 import moment from "moment";
+import { MAX_NUM_INVITES } from "../constants";
 
 export const userInvites = (user) => {
     if (user.invites) return user.invites;
 
-    const invited = Meteor.users.find({ "profile.invitedBy" : user._id }).count();
-
-    if (invited >= 2)  return  0;
-
-    return invited;
+    const inviteCount = Meteor.users.find({ "profile.invitedBy" : user._id }).count();
+    return (MAX_NUM_INVITES - inviteCount);
 }
 
 export const formatDateTime = (date) => {

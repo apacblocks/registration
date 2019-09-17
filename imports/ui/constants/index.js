@@ -1,0 +1,1 @@
+export const MAX_NUM_INVITES = 2;
