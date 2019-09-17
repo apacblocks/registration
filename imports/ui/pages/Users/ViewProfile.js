@@ -10,7 +10,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
-import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { formatDateTime, userInvites } from '../../helpers';
 
 const useStyles = makeStyles(theme => ({
@@ -70,7 +70,7 @@ function ViewProfile(props) {
                     </Typography>
 
                     <div>
-                        <RoomOutlinedIcon style={{ marginBottom: '-5px' }} />
+                        <AccessTimeIcon style={{ marginBottom: '-5px' }} />
                         <Typography variant="body1" component="span" color="textSecondary" gutterBottom>
                             {` ${formatDateTime(props.user.createdAt)}`} 
                         </Typography>

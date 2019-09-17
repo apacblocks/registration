@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import { Meteor } from 'meteor/meteor'
 import TopNav from './Shared/TopNav';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import SnackbarWrapper from './Shared/SnackbarWrapper';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -23,12 +24,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Login(props) {
-    if(Meteor.user()){
+    if (Meteor.user()) {
         props.history.push('/profile');
     }
     const classes = useStyles();
     const [userName, setUserName] = useState();
     const [password, setPassword] = useState();
+    const [snackbar, setSnackbar] = useState({ open: false, variant: 'success', message: '' });
     const topNavStart = {
         icon: (<SupervisedUserCircleIcon />),
         title: "Login",
@@ -38,16 +40,32 @@ export default function Login(props) {
     }
 
     function login() {
-        if(userName==undefined|| password == undefined){
-            alert('fields cant be empty')
+        if (userName == undefined || password == undefined) {
+            setSnackbar({
+                ...snackbar,
+                ...{ open: true, variant: "error", message: 'fields cant be empty' }
+            });
+
+            setTimeout(() => {
+                setSnackbar({ ...snackbar, ['open']: false })
+            }, 2000);
+
             return
         }
+        
         Meteor.loginWithPassword(userName, password, (err) => {
-            if(!err){
+            if (!err) {
                 props.history.push('/profile');
             }
-            else{
-                alert(err)
+            else {
+                setSnackbar({
+                    ...snackbar,
+                    ...{ open: true, variant: "error", message: err.message }
+                });
+
+                setTimeout(() => {
+                    setSnackbar({ ...snackbar, ['open']: false })
+                }, 2000);
             }
         })
     }
@@ -57,12 +75,11 @@ export default function Login(props) {
             <CssBaseline />
             <TopNav topNavStart={topNavStart} />
             <Toolbar id="back-to-top-anchor" />
-            <Container style={{ minHeight: '100vh' }}>
-                <Box my={2}>
+            <Container>
+                <Box my={3} mx={1}>
                     <TextField
                         id="standard-full-width-uname"
                         label="BTC address or Email"
-                        style={{ margin: 8 }}
                         placeholder=""
                         fullWidth
                         margin="normal"
@@ -75,7 +92,6 @@ export default function Login(props) {
                         id="standard-full-width-pw"
                         type="password"
                         label="Password"
-                        style={{ margin: 8 }}
                         placeholder=""
                         fullWidth
                         margin="normal"
@@ -84,8 +100,14 @@ export default function Login(props) {
                         }}
                         onChange={() => { setPassword(event.target.value) }}
                     />
-                    <Button style={{ marginTop: 10 }} variant="contained" color="primary" onClick={()=>{login()}}>Login</Button>
+                    <Button style={{ marginTop: 15 }} variant="contained" color="primary" onClick={() => { login() }}>Login</Button>
                 </Box>
+                <SnackbarWrapper
+                    open={snackbar.open}
+                    variant={snackbar.variant}
+                    message={snackbar.message}
+                    className={classes.margin}
+                />
             </Container>
         </React.Fragment>
     );

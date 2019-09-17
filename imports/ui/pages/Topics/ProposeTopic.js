@@ -152,7 +152,7 @@ function ProposeTopic(props) {
                         helperText={topicErr.details}
                     />
                     <Typography component="span" className={classes.charCount}>
-                        {formCharCount.details.max - formCharCount.summary.current + " characters left."}
+                        {formCharCount.details.max - formCharCount.details.current + " characters left."}
                     </Typography>
 
                 </form>

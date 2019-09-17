@@ -3,7 +3,6 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { CssBaseline, Container, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TopNav from './Shared/TopNav';
-import BottomNav from './Shared/BottomNav';
 import CloseIcon from '@material-ui/icons/Close';
 import { Meteor } from 'meteor/meteor';
 import SnackbarWrapper from './Shared/SnackbarWrapper';
@@ -27,7 +26,7 @@ function Settings(props) {
         const classes = useStyles();
         const currentUser = Meteor.user();
         const [profileValues, setProfileValues] = useState(currentUser.profile);
-        const [snackbar, setSnackbar] = useState({ open: false, variant: 'success', message: '' });
+        const [snackbar, setSnackbar] = useState({ open: false, variant: 'error', message: '' });
 
         const handleProfileChange = name => event => {
             setProfileValues({ ...profileValues, [name]: event.target.value });
@@ -121,7 +120,6 @@ function Settings(props) {
                         className={classes.margin}
                     />
                 </Container>
-                <BottomNav current="profile" />
             </React.Fragment>
         );
     }
