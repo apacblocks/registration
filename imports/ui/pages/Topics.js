@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TopNav from './Shared/TopNav';
 import BottomNav from './Shared/BottomNav';
 import { Meteor } from 'meteor/meteor';
-import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import HomeIcon from '@material-ui/icons/HomeRounded';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { Route } from 'react-router';
@@ -60,7 +60,7 @@ function Topics(props) {
         };
 
         const topNavStart = {
-            icon: (<SupervisedUserCircleIcon />),
+            icon: (<HomeIcon />),
             title: "Presentation Topics",
             func: () => {
                 props.history.push('/welcome')

@@ -15,7 +15,7 @@ import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
 import BottomNav from './Shared/BottomNav';
 import TopNav from './Shared/TopNav';
-import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import HomeIcon from '@material-ui/icons/HomeRounded';
 import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -39,7 +39,7 @@ function Profile(props) {
         const classes = useStyles();
         const [sponsorName, setSponsorName] = useState("Loading");
         const topNavStart = {
-            icon: (<SupervisedUserCircleIcon />),
+            icon: (<HomeIcon/>),
             title: "Profile",
             func: () => {
                 props.history.push('/welcome')

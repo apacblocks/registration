@@ -7,7 +7,7 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import TopNav from './Shared/TopNav';
-import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import HomeIcon from '@material-ui/icons/HomeRounded';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -37,7 +37,7 @@ export default function Reg(props) {
     const [cPassword, setCPassword] = useState();
     const [bio, setBio] = useState();
     const topNavStart = {
-        icon: (<SupervisedUserCircleIcon />),
+        icon: (<HomeIcon />),
         title: "Register",
         func: () => {
             props.history.push('/welcome')
