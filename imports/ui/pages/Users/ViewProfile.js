@@ -75,7 +75,7 @@ function ViewProfile(props) {
                             {` ${formatDateTime(props.user.createdAt)}`} 
                         </Typography>
                         <Typography variant="body1" component="span" gutterBottom>
-                           {` | ${userInvites(props.user)} Invites`}
+                           {` | ${userInvites(props.user)} Remaining Invites`}
                         </Typography>
                     </div>
 

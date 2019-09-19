@@ -97,7 +97,7 @@ function Login(props) {
                                             className={classes.inline}
                                             color="textPrimary"
                                         >
-                                            {userInvites(user)} Invites
+                                            {userInvites(user)} Remaining Invitations
                                         </Typography>
                                     </ListItemSecondaryAction>
                                 </ListItem>
