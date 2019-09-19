@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Meteor } from 'meteor/meteor'
 import TopNav from './Shared/TopNav';
-import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import HomeIcon from '@material-ui/icons/HomeRounded';
 import SnackbarWrapper from './Shared/SnackbarWrapper';
 
 const useStyles = makeStyles(theme => ({
@@ -32,7 +32,7 @@ export default function Login(props) {
     const [password, setPassword] = useState();
     const [snackbar, setSnackbar] = useState({ open: false, variant: 'success', message: '' });
     const topNavStart = {
-        icon: (<SupervisedUserCircleIcon />),
+        icon: (<HomeIcon />),
         title: "Login",
         func: () => {
             props.history.push('/welcome')

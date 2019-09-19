@@ -7,7 +7,7 @@ import { Meteor } from 'meteor/meteor'
 import { withTracker } from 'meteor/react-meteor-data';
 import BottomNav from './Shared/BottomNav';
 import TopNav from './Shared/TopNav';
-import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import HomeIcon from '@material-ui/icons/HomeRounded';
 import { List, ListItem, ListItemAvatar, Avatar, ListItemText, Divider, Typography, ListItemSecondaryAction } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { userInvites } from '../helpers';
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 function Login(props) {
     const classes = useStyles();
     const topNavStart = {
-        icon: (<SupervisedUserCircleIcon />),
+        icon: (<HomeIcon />),
         title: "Users",
         func: () => {
             props.history.push('/welcome')
@@ -75,7 +75,7 @@ function Login(props) {
                                         </Avatar>
                                     </ListItemAvatar>
                                     <ListItemText
-                                        primary={user.profile.realName}
+                                        primary={index+1 + ". " + user.profile.realName}
                                         secondary={
                                             <React.Fragment>
                                                 <Typography

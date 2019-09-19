@@ -7,7 +7,7 @@ import Container from '@material-ui/core/Container';
 import QrReader from 'react-qr-reader'
 import { Meteor } from 'meteor/meteor';
 import TopNav from './Shared/TopNav';
-import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import HomeIcon from '@material-ui/icons/HomeRounded';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 export default function Join(props) {
   const classes = useStyles();
   const topNavStart = {
-    icon: (<SupervisedUserCircleIcon />),
+    icon: (<Home />),
     title: "Join",
     func: () => {
       props.history.push('/welcome')

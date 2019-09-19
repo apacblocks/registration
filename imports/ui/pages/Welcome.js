@@ -12,6 +12,7 @@ import Zoom from '@material-ui/core/Zoom';
 import TopNav from './Shared/TopNav';
 import BottomNav from './Shared/BottomNav';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import HomeIcon from '@material-ui/icons/HomeRounded';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -71,17 +72,24 @@ ScrollTop.propTypes = {
 export default function Main(props) {
   window.scrollTo(0, 0);
   const topNavStart = {
-    icon: (<SupervisedUserCircleIcon />),
+    icon: (<HomeIcon />),
     title: "Welcome",
     func: () => {
       props.history.push('/welcome')
     }
   }
 
+  const topNavEnd = {
+    icon: (<SupervisedUserCircleIcon />),
+    func: () => {
+      props.history.push('/userlist')
+    }
+  }
+
   return (
     <React.Fragment>
       <CssBaseline />
-      <TopNav topNavStart={topNavStart} />
+      <TopNav topNavStart={topNavStart} topNavEnd={topNavEnd}/>
       <Toolbar id="back-to-top-anchor" />
       <Container style={{ minHeight: '100vh' }}>
         <Box my={2}>
