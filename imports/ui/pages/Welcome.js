@@ -13,6 +13,7 @@ import TopNav from './Shared/TopNav';
 import BottomNav from './Shared/BottomNav';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import HomeIcon from '@material-ui/icons/HomeRounded';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -79,17 +80,21 @@ export default function Main(props) {
     }
   }
 
-  const topNavEnd = {
-    icon: (<SupervisedUserCircleIcon />),
-    func: () => {
-      props.history.push('/userlist')
-    }
-  }
+  const topNavEnd = (
+    <IconButton
+      edge="start"
+      color="inherit"
+      aria-label="go back"
+      onClick={()=>props.history.push('/userlist')}
+    >
+      <SupervisedUserCircleIcon/>
+    </IconButton>
+  )
 
   return (
     <React.Fragment>
       <CssBaseline />
-      <TopNav topNavStart={topNavStart} topNavEnd={topNavEnd}/>
+      <TopNav topNavStart={topNavStart} topNavEnd={topNavEnd} />
       <Toolbar id="back-to-top-anchor" />
       <Container style={{ minHeight: '100vh' }}>
         <Box my={2}>

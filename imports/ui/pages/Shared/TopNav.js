@@ -48,15 +48,7 @@ const TopNav = (props) => {
                     {props.topNavStart && props.topNavStart.title}
                 </Typography>
                 <div className={classes.grow} />
-                <IconButton
-                    edge="start"
-                    className={classes.menuButton}
-                    color="inherit"
-                    aria-label="go back"
-                    onClick={props.topNavEnd && props.topNavEnd.func} 
-                >
-                    {props.topNavEnd && props.topNavEnd.icon}
-                </IconButton>
+                    {props.topNavEnd}
             </Toolbar>
         </AppBar>
     )
