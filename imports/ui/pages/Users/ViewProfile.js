@@ -63,7 +63,7 @@ function ViewProfile(props) {
                 <TopNav topNavStart={topNavStart} />
                 <Grid className={classes.root} container direction="column" justify="center" alignItems="center" style={{ marginTop: '50px' }}>
                     <Avatar alt={props.user.profile.realName} className={classes.avatar} >
-                        <AccountCircleIcon className={classes.avatarIcon} />
+                        <img src={'https://avatars.dicebear.com/v2/gridy/' + user._id + 'xx' + '.svg'} height='100px' width="auto"/>
                     </Avatar>
                     <Typography variant="h6" component="h6" gutterBottom>
                         {props.user.profile.realName}

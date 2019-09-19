@@ -71,7 +71,7 @@ function Login(props) {
                                 >
                                     <ListItemAvatar>
                                         <Avatar alt={user.profile.realName}>
-                                            <AccountCircleIcon />
+                                            <img src={'https://avatars.dicebear.com/v2/gridy/' + user._id + 'xx' + '.svg'} height='50px' width="auto"/>
                                         </Avatar>
                                     </ListItemAvatar>
                                     <ListItemText
