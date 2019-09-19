@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 export default function Join(props) {
   const classes = useStyles();
   const topNavStart = {
-    icon: (<Home />),
+    icon: (<HomeIcon />),
     title: "Join",
     func: () => {
       props.history.push('/welcome')
