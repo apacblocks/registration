@@ -75,7 +75,7 @@ function Login(props) {
                                         </Avatar>
                                     </ListItemAvatar>
                                     <ListItemText
-                                        primary={user.profile.realName}
+                                        primary={index+1 + ". " + user.profile.realName}
                                         secondary={
                                             <React.Fragment>
                                                 <Typography
