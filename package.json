@@ -15,7 +15,7 @@
     "classnames": "^2.2.6",
     "history": "^4.9.0",
     "meteor-node-stubs": "^0.4.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "qrcode.react": "^0.9.3",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",
